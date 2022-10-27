@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>Clients</title>
+<title>Sales</title>
 <link href="style.css" rel="stylesheet" type="text/css" />
 <script language="JavaScript">
 		function showform(dowhat) {
@@ -39,79 +39,76 @@
 				document.getElementById('delete').style.display = 'none';
 			}
 		}
-    function newClient() { showform('insert'); }
-    function updateClient(cid) { showform('update'); }
-    function deleteClient(cid) { showform ('delete'); }
-    function browseClients() { showform ('browse'); }
+    function newSale() { showform('insert'); }
+    function updateSale(cid) { showform('update'); }
+    function deleteSale(cid) { showform ('delete'); }
+    function browseSales() { showform ('browse'); }
     function showAll() { showform ('all'); }
 </script>
 </head>
 
-<body onload="browseClients()">
-<h1>Clients</h1>
+<body onload="browseSales()">
+<h1>Sales</h1>
 
 
 <div id="browse">
 <p><a href="#" onClick="showAll()">Display all forms</a> </p>
 <table border="1" cellpadding="5">
   <tr>
-    <th><a href="#" onClick="newClient()">New</a></th>
+    <th><a href="#" onClick="newSale()">New</a></th>
     <th></th>
     <th>Id</th>
-    <th>First Name</th>
-    <th>Last Name</th>
-    <th>Phone</th>
-    <th>Email</th>
+    <th>Date</th>
+    <th>Price</th>
+    <th>Planet Name (cid)</th>
   </tr>
-  {{#each clients}}
-  	{{> clientRow}}
+  {{#each sales}}
+  	{{> saleRow}}
   {{/each}}
 
 </table>
 <p>&nbsp;</p>
 </div> <!-- browse -->
 <div id="insert">
-    <form method="POST" id="addClient">
-        <legend><strong>Add Client</strong></legend>
+    <form method="POST" id="addSale">
+        <legend><strong>Add Sale</strong></legend>
           <fieldset class="fields">
-            <label> First Name </label> <input type="text" name="firstName">
-            <label> Last Name </label> <input type="text" name="lastName">
-            <label> Phone </label> <input type="text" name="phone">
-            <label> Email </label> <input type="text" name="email">
+            <label> Date </label> <input type="text" name="firstName">
+            <label> Price </label> <input type="text" name="lastName">
+            <label> Planet Name (cid) </label> <input type="text" name="phone">
       </fieldset>
-          <input class="btn" type="submit" id="addClient" value="Add Client">
-          <input class="btn" type="button" value="Cancel" onClick="browseClients()">
+          <input class="btn" type="submit" id="addSale" value="Add Sale">
+          <input class="btn" type="button" value="Cancel" onClick="browseSales()">
 	</form> 
 </div><!-- insert -->
 <p>&nbsp;</p>
 <div id="update">
-    <form method="POST" id="UpdateClient">
-        <legend><strong>Update Client</strong></legend>
+    <form method="POST" id="UpdateSale">
+        <legend><strong>Update Sale</strong></legend>
           <fieldset class="fields">
-          <input type="hidden" name="clientID" id="updateclientID" value={{clients.0.saleID}}>
-          <label> ID: </label> {{clients.0.clientID}}
-            <label> First Name </label> <input type="text" name="firstName" value={{clients.0.firstName}}>
-            <label> Last Name </label> <input type="text" name="lastName" value={{clients.0.lastName}}>
-            <label> Phone </label> <input type="text" name="phone" value={{clients.0.phone}}>
-            <label> Email </label> <input type="text" name="email" value={{clients.0.email}}>
+          <input type="hidden" name="saleID" id="updatesaleID" value={{sales.0.saleID}}>
+          <label> ID: </label> {{sales.0.saleID}}
+            <label> Date </label> <input type="text" name="firstName" value={{sales.0.date}}>
+            <label> Price </label> <input type="text" name="lastName" value={{sales.0.price}}>
+            <label> Planet Name (cid) </label> <input type="text" name="phone" value={{sales.0.cid}}>
       </fieldset>
-          <input class="btn" type="submit" id="UpdateSaveClient" value="Save Update Client">
-          <input class="btn" type="button" value="Cancel" onClick="browseClients()">
+          <input class="btn" type="submit" id="UpdateSaveSale" value="Save Update Sale">
+          <input class="btn" type="button" value="Cancel" onClick="browseSales()">
 	</form> 
 </div><!-- update -->
 <p>&nbsp;</p>
 <div id="delete" style="display: block">
-  <form method="POST" id="deleteClient">
-      <legend><strong>Delete Client</strong></legend>
+  <form method="POST" id="deleteSale">
+      <legend><strong>Delete Sale</strong></legend>
           <fieldset class="fields">
           <p>Are you sure you wish to delete the following?</p>
-          <input type="hidden" name="clientID" id="deleteclientID" value={{clients.0.clientID}}>
-          <label><strong>ID:</strong></label> {{clients.0.clientID}}
-		  <label> <strong>Name</strong> </label> {{clients.0.firstName}}
+          <input type="hidden" name="saleID" id="deletesaleID" value={{sales.0.saleID}}>
+          <label><strong>ID:</strong></label> {{sales.0.saleID}}
+		  <label> <strong>Planet Name: </strong> </label> {{sales.0.cid}}
             
     </fieldset>
-    <input class="btn" type="submit" id="DeleteClient" value="Delete Client">
-	<input class="btn" type="button" value="Cancel" onClick="browseClients()">
+    <input class="btn" type="submit" id="DeleteSale" value="Delete Sale">
+	<input class="btn" type="button" value="Cancel" onClick="browseSales()">
   </form> 
 </div><!-- delete -->
 

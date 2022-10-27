@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>Clients</title>
+<title>Fun Facts</title>
 <link href="style.css" rel="stylesheet" type="text/css" />
 <script language="JavaScript">
 		function showform(dowhat) {
@@ -39,79 +39,70 @@
 				document.getElementById('delete').style.display = 'none';
 			}
 		}
-    function newClient() { showform('insert'); }
-    function updateClient(cid) { showform('update'); }
-    function deleteClient(cid) { showform ('delete'); }
-    function browseClients() { showform ('browse'); }
+    function newFunFact() { showform('insert'); }
+    function updateFunFact(cid) { showform('update'); }
+    function deleteFunFact(cid) { showform ('delete'); }
+    function browseFunFacts() { showform ('browse'); }
     function showAll() { showform ('all'); }
 </script>
 </head>
 
-<body onload="browseClients()">
-<h1>Clients</h1>
+<body onload="browseFunFacts()">
+<h1>Fun Facts</h1>
 
 
 <div id="browse">
 <p><a href="#" onClick="showAll()">Display all forms</a> </p>
 <table border="1" cellpadding="5">
   <tr>
-    <th><a href="#" onClick="newClient()">New</a></th>
+    <th><a href="#" onClick="newFunFact()">New</a></th>
     <th></th>
     <th>Id</th>
-    <th>First Name</th>
-    <th>Last Name</th>
-    <th>Phone</th>
-    <th>Email</th>
+    <th>Fun Fact</th>
   </tr>
-  {{#each clients}}
-  	{{> clientRow}}
+  {{#each funFacts}}
+  	{{> funFactRow}}
   {{/each}}
 
 </table>
 <p>&nbsp;</p>
 </div> <!-- browse -->
 <div id="insert">
-    <form method="POST" id="addClient">
-        <legend><strong>Add Client</strong></legend>
+    <form method="POST" id="addFunFact">
+        <legend><strong>Add FunFact</strong></legend>
           <fieldset class="fields">
-            <label> First Name </label> <input type="text" name="firstName">
-            <label> Last Name </label> <input type="text" name="lastName">
-            <label> Phone </label> <input type="text" name="phone">
-            <label> Email </label> <input type="text" name="email">
+            <label> Fun Fact </label> <input type="text" name="firstName">
       </fieldset>
-          <input class="btn" type="submit" id="addClient" value="Add Client">
-          <input class="btn" type="button" value="Cancel" onClick="browseClients()">
+          <input class="btn" type="submit" id="addFunFact" value="Add FunFact">
+          <input class="btn" type="button" value="Cancel" onClick="browseFunFacts()">
 	</form> 
 </div><!-- insert -->
 <p>&nbsp;</p>
 <div id="update">
-    <form method="POST" id="UpdateClient">
-        <legend><strong>Update Client</strong></legend>
+    <form method="POST" id="UpdateFunFact">
+        <legend><strong>Update FunFact</strong></legend>
           <fieldset class="fields">
-          <input type="hidden" name="clientID" id="updateclientID" value={{clients.0.saleID}}>
-          <label> ID: </label> {{clients.0.clientID}}
-            <label> First Name </label> <input type="text" name="firstName" value={{clients.0.firstName}}>
-            <label> Last Name </label> <input type="text" name="lastName" value={{clients.0.lastName}}>
-            <label> Phone </label> <input type="text" name="phone" value={{clients.0.phone}}>
-            <label> Email </label> <input type="text" name="email" value={{clients.0.email}}>
+          <input type="hidden" name="funFactID" id="updatefunFactID" value={{funFacts.0.funFactID}}>
+          <label> ID: </label> {{funFacts.0.funFactID}}
+		  <label> Fun Fact: </label> <input type="text" name="firstName" value={{funFacts.0.funFact}}>
       </fieldset>
-          <input class="btn" type="submit" id="UpdateSaveClient" value="Save Update Client">
-          <input class="btn" type="button" value="Cancel" onClick="browseClients()">
+          <input class="btn" type="submit" id="UpdateSaveFunFact" value="Save Update Fun Fact">
+          <input class="btn" type="button" value="Cancel" onClick="browseFunFacts()">
 	</form> 
 </div><!-- update -->
 <p>&nbsp;</p>
 <div id="delete" style="display: block">
-  <form method="POST" id="deleteClient">
-      <legend><strong>Delete Client</strong></legend>
+  <form method="POST" id="deleteFunFact">
+      <legend><strong>Delete FunFact</strong></legend>
           <fieldset class="fields">
           <p>Are you sure you wish to delete the following?</p>
-          <input type="hidden" name="clientID" id="deleteclientID" value={{clients.0.clientID}}>
-          <label><strong>ID:</strong></label> {{clients.0.clientID}}
-		  <label> <strong>Name</strong> </label> {{clients.0.firstName}}
+          <input type="hidden" name="funFactID" id="deletefunFactID" value={{funFacts.0.funFactID}}>
+          <label><strong>ID:</strong></label> {{funFacts.0.funFactID}}
+		  <label> <strong>Fun Fact: </strong> </label> {{funFacts.0.funFact}}
             
     </fieldset>
-    <input class="btn" type="submit" id="DeleteClient" value="Delete Client">
-	<input class="btn" type="button" value="Cancel" onClick="browseClients()">
+    <input class="btn" type="submit" id="DeleteFunFact" value="Delete Fun Fact">
+	<input class="btn" type="button" value="Cancel" onClick="browseFunFacts()">
   </form> 
 </div><!-- delete -->
 

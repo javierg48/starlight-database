@@ -6,23 +6,109 @@
 	"1": {
 		"clients": [
 			{
-			"id": "1",
+			"clientID": "1",
 			"firstName": "Motola",
 			"lastName": "Anibaba",
 			"phone": "2815555555",
 			"email": "motola@hell.com"
 			}, {
-			"id": "1",
-			"firstName": "Motola",
-			"lastName": "Anibaba",
-			"phone": "2815555555",
-			"email": "motola@hell.com"
+			"clientID": "2",
+			"firstName": "Javier",
+			"lastName": "Garcia",
+			"phone": "1234567890",
+			"email": "javier@hello.com"
 			}, {
-			"id": "1",
-			"firstName": "Motola",
-			"lastName": "Anibaba",
-			"phone": "2815555555",
-			"email": "motola@hell.com"
+			"clientID": "3",
+			"firstName": "Burna",
+			"lastName": "Boy",
+			"phone": "9999999999",
+			"email": "burnaboy@goodbye.com"
+			}
+		]
+	},
+	"2": {
+		"sales": [
+			{
+			"saleID": "1",
+			"date": "2019-12-01",
+			"price": "2322.50",
+			"cid": "Saturn" 
+			}, {
+			"saleID": "2",
+			"date": "2012-12-06",
+			"price": "3400.75",
+			"cid": "Mercury"
+			}, {
+			"saleID": "3",
+			"date": "2020-01-01",
+			"price": "1002.50",
+			"cid": "Venus" 
+			}
+		]
+	},
+	"3": {
+		"planets": [
+			{
+			"planetID": "1",
+			"forSale": "Yes", 
+			"planetName": "Saturn", 
+			"sid": "1"
+			}, {
+			"planetID": "1",
+			"forSale": "Yes", 
+			"planetName": "Mercury", 
+			"sid": "2"
+			}, {
+			"planetID": "1",
+			"forSale": "Yes", 
+			"planetName": "Venus", 
+			"sid": "3"
+			}
+		]
+	},
+	"4": {
+		"information": [
+			{
+			"informationID": "1",
+			"distance": "878",
+			"size": "72367",
+			"material": "Hydrogen and Helium",
+			"explored": "Yes",
+			"lifeDiscovered": "Yes",
+			"pid": "Saturn",
+			"fid": "Saturn could float in water because it is mostly made up of gas."
+			}, {
+			"informationID": "2",
+			"distance": "117",
+			"size": "3032",
+			"material": "Mercury is made up mostly of iron.",
+			"explored": "No",
+			"lifeDiscovered": "No",
+			"pid": "Mercury",
+			"fid": "Mercury is the smallest planet in the Solar System."
+			}, {
+			"informationID": "3",
+			"distance": "878",
+			"size": "72367",
+			"material": "Central iron core and rocky mantle.",
+			"explored": "Yes",
+			"lifeDiscovered": "No",
+			"pid": "Venus",
+			"fid": "Venus is the hottest planet in the Solar System."
+			}
+		]
+	},
+	"5": {
+		"funFacts": [
+			{
+			"funFactID": "1",
+			"funFact": "Saturn could float in water because it is mostly made up of gas."
+			}, {
+			"funFactID": "2",
+			"funFact": "Mercury is the smallest planet in the Solar System."
+			}, {
+			"funFactID": "3",
+			"funFact": "Venus is the hottest planet in the Solar System."
 			}
 		]
 	}

@@ -1,0 +1,128 @@
+<html>
+<head>
+<title>Information</title>
+<link href="style.css" rel="stylesheet" type="text/css" />
+<script language="JavaScript">
+		function showform(dowhat) {
+			/*
+			* four DIVS: browse, insert, update, delete
+			* this function sets one visible the others not
+			*/
+			if (dowhat == 'insert'){
+				document.getElementById('browse').style.display = 'none';
+				document.getElementById('insert').style.display = 'block';
+				document.getElementById('update').style.display = 'none';
+				document.getElementById('delete').style.display = 'none';
+			}
+			else if (dowhat == 'update'){
+				document.getElementById('browse').style.display = 'none';
+				document.getElementById('insert').style.display = 'none';
+				document.getElementById('update').style.display = 'block';
+				document.getElementById('delete').style.display = 'none';
+			}
+			else if (dowhat == 'delete'){
+				document.getElementById('browse').style.display = 'none';
+				document.getElementById('insert').style.display = 'none';
+				document.getElementById('update').style.display = 'none';
+				document.getElementById('delete').style.display = 'block';
+			}
+			else if (dowhat == 'all'){
+				document.getElementById('browse').style.display = 'block';
+				document.getElementById('insert').style.display = 'block';
+				document.getElementById('update').style.display = 'block';
+				document.getElementById('delete').style.display = 'block';
+			}
+			else { //by default display browse
+				document.getElementById('browse').style.display = 'block';
+				document.getElementById('insert').style.display = 'none';
+				document.getElementById('update').style.display = 'none';
+				document.getElementById('delete').style.display = 'none';
+			}
+		}
+    function newInformation() { showform('insert'); }
+    function updateInformation(cid) { showform('update'); }
+    function deleteInformation(cid) { showform ('delete'); }
+    function browseInformation() { showform ('browse'); }
+    function showAll() { showform ('all'); }
+</script>
+</head>
+
+<body onload="browseInformation()">
+<h1>Information</h1>
+
+
+<div id="browse">
+<p><a href="#" onClick="showAll()">Display all forms</a> </p>
+<table border="1" cellpadding="5">
+  <tr>
+    <th><a href="#" onClick="newInformation()">New</a></th>
+    <th></th>
+    <th>Id</th>
+    <th>Distance</th>
+    <th>Size (miles)</th>
+    <th>Material</th>
+    <th>Explored</th>
+    <th>Life Discovered</th>
+    <th>Planet Name (pid)</th>
+    <th>Fun Fact (fid)</th>
+  </tr>
+  {{#each information}}
+  	{{> informationRow}}
+  {{/each}}
+
+</table>
+<p>&nbsp;</p>
+</div> <!-- browse -->
+<div id="insert">
+    <form method="POST" id="addInformation">
+        <legend><strong>Add Information</strong></legend>
+          <fieldset class="fields">
+            <label> Distance </label> <input type="text" name="firstName">
+            <label> Size (miles) </label> <input type="text" name="lastName">
+            <label> Explored </label> <input type="text" name="phone">
+            <label> Life Discovered </label> <input type="text" name="phone">
+            <label> Planet Name (PID) </label> <input type="text" name="phone">
+            <label> Fun Fact (fid) </label> <input type="text" name="phone">
+      </fieldset>
+          <input class="btn" type="submit" id="addInformation" value="Add Information">
+          <input class="btn" type="button" value="Cancel" onClick="browseInformation()">
+	</form> 
+</div><!-- insert -->
+<p>&nbsp;</p>
+<div id="update">
+    <form method="POST" id="UpdateInformation">
+        <legend><strong>Update Information</strong></legend>
+          <fieldset class="fields">
+          <input type="hidden" name="informationID" id="updateinformationID" value={{information.0.informationID}}>
+			<label> ID: </label> {{information.0.informationID}}
+            <label> Distance </label> <input type="text" name="firstName" value={{information.0.distance}}>
+            <label> Size (miles) </label> <input type="text" name="lastName" value={{information.0.size}}>
+            <label> Material </label> <input type="text" name="phone" value={{information.0.material}}>
+
+            <label> Explored </label> <input type="text" name="phone" value={{information.0.explored}}>
+            <label> Life Discovered </label> <input type="text" name="firstName" value={{information.0.lifeDiscovered}}>
+            <label> Planet Name (pid) </label> <input type="text" name="lastName" value={{information.0.pid}}>
+            <label> Fun Fact (fid) </label> <input type="text" name="phone" value={{information.0.fid}}>
+      </fieldset>
+          <input class="btn" type="submit" id="UpdateSaveInformation" value="Save Update Information">
+          <input class="btn" type="button" value="Cancel" onClick="browseInformation()">
+	</form> 
+</div><!-- update -->
+<p>&nbsp;</p>
+<div id="delete" style="display: block">
+  <form method="POST" id="deleteInformation">
+      <legend><strong>Delete Information</strong></legend>
+          <fieldset class="fields">
+          <p>Are you sure you wish to delete the following?</p>
+          <input type="hidden" name="informationID" id="deleteinformationID" value={{information.0.informationID}}>
+          <label><strong>ID:</strong></label> {{information.0.informationID}}
+		  <label> <strong>Planet Name: </strong> </label> {{information.0.pid}}
+            
+    </fieldset>
+    <input class="btn" type="submit" id="DeleteInformation" value="Delete Information">
+	<input class="btn" type="button" value="Cancel" onClick="browseInformation()">
+  </form> 
+</div><!-- delete -->
+
+</body>
+</html>
