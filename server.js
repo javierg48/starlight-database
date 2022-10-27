@@ -26,23 +26,19 @@ app.get('/', function (req, res, next) {
 
 app.use(express.static('public')); // ????????
 
-/*
 app.get('/clients', function(req, res, next) {
 	var clientsData = db[1];
 
 	if (clientsData) {
 		res.status(200).render('clientsPage', {
-			id: clientsData.id,
-			firstName: clientsData.firstName, 
-			lastName: clientsData.lastName, 
-			phone: clientsData.phone, 
-			email: clientsData.email
+			clients: clientsData.clients
     })
   } else {
     next();
   }
 });
-*/
+
+
 app.get('*', function (req, res) {
 	console.log("ERROR");
 	res.status(404).render('404', {
