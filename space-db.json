@@ -54,12 +54,12 @@
 			"planetName": "Saturn", 
 			"sid": "1"
 			}, {
-			"planetID": "1",
+			"planetID": "2",
 			"forSale": "Yes", 
 			"planetName": "Mercury", 
 			"sid": "2"
 			}, {
-			"planetID": "1",
+			"planetID": "3",
 			"forSale": "Yes", 
 			"planetName": "Venus", 
 			"sid": "3"

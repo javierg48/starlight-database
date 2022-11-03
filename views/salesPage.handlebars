@@ -8,37 +8,50 @@
 			* four DIVS: browse, insert, update, delete
 			* this function sets one visible the others not
 			*/
-			if (dowhat == 'insert'){
+			if (dowhat == 'search'){
 				document.getElementById('browse').style.display = 'none';
+				document.getElementById('search').style.display = 'block';
+				document.getElementById('insert').style.display = 'none';
+				document.getElementById('update').style.display = 'none';
+				document.getElementById('delete').style.display = 'none';
+			}
+			else if (dowhat == 'insert'){
+				document.getElementById('browse').style.display = 'none';
+				document.getElementById('search').style.display = 'none';
 				document.getElementById('insert').style.display = 'block';
 				document.getElementById('update').style.display = 'none';
 				document.getElementById('delete').style.display = 'none';
 			}
 			else if (dowhat == 'update'){
 				document.getElementById('browse').style.display = 'none';
+				document.getElementById('search').style.display = 'none';
 				document.getElementById('insert').style.display = 'none';
 				document.getElementById('update').style.display = 'block';
 				document.getElementById('delete').style.display = 'none';
 			}
 			else if (dowhat == 'delete'){
 				document.getElementById('browse').style.display = 'none';
+				document.getElementById('search').style.display = 'none';
 				document.getElementById('insert').style.display = 'none';
 				document.getElementById('update').style.display = 'none';
 				document.getElementById('delete').style.display = 'block';
 			}
 			else if (dowhat == 'all'){
 				document.getElementById('browse').style.display = 'block';
+				document.getElementById('search').style.display = 'block';
 				document.getElementById('insert').style.display = 'block';
 				document.getElementById('update').style.display = 'block';
 				document.getElementById('delete').style.display = 'block';
 			}
 			else { //by default display browse
 				document.getElementById('browse').style.display = 'block';
+				document.getElementById('search').style.display = 'none';
 				document.getElementById('insert').style.display = 'none';
 				document.getElementById('update').style.display = 'none';
 				document.getElementById('delete').style.display = 'none';
 			}
 		}
+    function searchSale() { showform('search'); }
     function newSale() { showform('insert'); }
     function updateSale(cid) { showform('update'); }
     function deleteSale(cid) { showform ('delete'); }
@@ -69,6 +82,21 @@
 </table>
 <p>&nbsp;</p>
 </div> <!-- browse -->
+
+<div id="search">
+    <form method="POST" id="searchSale">
+        <legend><strong>Search Sale</strong></legend>
+          <fieldset class="fields">
+            <label> Date </label> <input type="text" name="firstName">
+            <label> Price </label> <input type="text" name="lastName">
+            <label> Planet Name (cid) </label> <input type="text" name="phone">
+      </fieldset>
+          <input class="btn" type="submit" id="searchSale" value="Search Sale">
+          <input class="btn" type="button" value="Cancel" onClick="searchSales()">
+	</form> 
+</div><!-- search -->
+<p>&nbsp;</p>
+
 <div id="insert">
     <form method="POST" id="addSale">
         <legend><strong>Add Sale</strong></legend>
@@ -111,6 +139,7 @@
 	<input class="btn" type="button" value="Cancel" onClick="browseSales()">
   </form> 
 </div><!-- delete -->
+<p>&nbsp;</p>
 
 </body>
 </html>
