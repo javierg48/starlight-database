@@ -118,7 +118,15 @@
         <legend><strong>Update Client</strong></legend>
           <fieldset class="fields">
           <input type="hidden" name="clientID" id="updateclientID" value={{clients.0.saleID}}>
-          <label> ID: </label> {{clients.0.clientID}}
+          <label> ID: </label> 
+
+			<td><select>
+				<option value="clientID">Select a Client ID</option>
+				<option value="1">1, Motola</option>
+				<option value="2">2, Javier</option>
+				<option value="3">3, Burna</option>
+			</select></td>
+		
             <label> First Name </label> <input type="text" name="firstName" value={{clients.0.firstName}}>
             <label> Last Name </label> <input type="text" name="lastName" value={{clients.0.lastName}}>
             <label> Phone </label> <input type="text" name="phone" value={{clients.0.phone}}>

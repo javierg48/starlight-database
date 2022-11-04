@@ -75,9 +75,10 @@
     <th>Planet Name</th>
     <th>Sale ID (sid)</th>
   </tr>
-  {{#each planets}}
-  	{{> planetRow}}
-  {{/each}}
+
+	{{#each planets}}
+		{{> planetRow}}
+	{{/each}}
 
 </table>
 <p>&nbsp;</p>
@@ -115,7 +116,15 @@
         <legend><strong>Update Planet</strong></legend>
           <fieldset class="fields">
           <input type="hidden" name="planetID" id="updateplanetID" value={{planets.0.planetID}}>
-          <label> ID: </label> {{planets.0.planetID}}
+          <label> ID: </label>
+
+			<td><select>
+				<option value="planetID">Select a Planet ID</option>
+				<option value="1">1, Saturn</option>
+				<option value="2">2, Mercury</option>
+				<option value="3">3, Venus</option>
+			</select></td>
+
             <label> For Sale </label> <input type="text" name="firstName" value={{planets.0.forSale}}>
             <label> Planet Name </label> <input type="text" name="lastName" value={{planets.0.planetName}}>
             <label> Sale ID (sid) </label> <input type="text" name="phone" value={{planets.0.sid}}>

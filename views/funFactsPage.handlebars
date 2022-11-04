@@ -109,8 +109,19 @@
         <legend><strong>Update FunFact</strong></legend>
           <fieldset class="fields">
           <input type="hidden" name="funFactID" id="updatefunFactID" value={{funFacts.0.funFactID}}>
-          <label> ID: </label> {{funFacts.0.funFactID}}
-		  <label> Fun Fact: </label> <input type="text" name="firstName" value={{funFacts.0.funFact}}>
+          <label> ID: </label> 
+
+			<td><select>
+				<option value="planetID">Select a Fun Fact ID</option>
+				<option value="1">1, Saturn could...</option>
+				<option value="2">2, Mercury is the...</option>
+				<option value="3">3, Venus is the...</option>
+			</select></td>
+
+	
+			<textarea id="updateFunFact" name="funFactID" rows="3" cols="30" style="font-family: Arial">{{funFacts.0.funFact}}
+			</textarea>
+	
       </fieldset>
           <input class="btn" type="submit" id="UpdateSaveFunFact" value="Save Update Fun Fact">
           <input class="btn" type="button" value="Cancel" onClick="browseFunFacts()">

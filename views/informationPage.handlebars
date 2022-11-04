@@ -125,7 +125,15 @@
         <legend><strong>Update Information</strong></legend>
           <fieldset class="fields">
           <input type="hidden" name="informationID" id="updateinformationID" value={{information.0.informationID}}>
-			<label> ID: </label> {{information.0.informationID}}
+			<label> ID: </label> 
+
+			<td><select>
+				<option value="informationID">Select an Information ID</option>
+				<option value="1">1, Saturn</option>
+				<option value="2">2, Mercury</option>
+				<option value="3">3, Venus</option>
+			</select></td>
+
             <label> Distance </label> <input type="text" name="firstName" value={{information.0.distance}}>
             <label> Size (miles) </label> <input type="text" name="lastName" value={{information.0.size}}>
             <label> Material </label> <input type="text" name="phone" value={{information.0.material}}>

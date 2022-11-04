@@ -115,7 +115,15 @@
         <legend><strong>Update Sale</strong></legend>
           <fieldset class="fields">
           <input type="hidden" name="saleID" id="updatesaleID" value={{sales.0.saleID}}>
-          <label> ID: </label> {{sales.0.saleID}}
+          <label> ID: </label>
+		  	
+			<td><select>
+				<option value="saleID">Select a Sale ID</option>
+				<option value="1">1, Saturn</option>
+				<option value="2">2, Mercury</option>
+				<option value="3">3, Venus</option>
+			</select></td>
+
             <label> Date </label> <input type="text" name="firstName" value={{sales.0.date}}>
             <label> Price </label> <input type="text" name="lastName" value={{sales.0.price}}>
             <label> Planet Name (cid) </label> <input type="text" name="phone" value={{sales.0.cid}}>
