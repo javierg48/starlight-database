@@ -1,10 +1,15 @@
 -- Add new client
 SELECT * FROM client;
 INSERT INTO client(firstName, lastName, phone, email)
-VALUES (:firstNameInput, :lastNameInput, :phoneInput, :emailInput);
+VALUES (
+    :firstNameInput, 
+    :lastNameInput, 
+    :phoneInput, 
+    :emailInput
+);
 
 -- Lookup client by phone number
-SELECT * FROM client WHERE phone LIKE :phoneInput;
+SELECT * FROM client WHERE phone = :phoneInput;
 
 -- Delete client
 DELETE FROM client WHERE id = :idInput;
@@ -47,13 +52,14 @@ DELETE FROM sales WHERE salesID = :salesIDinput;
 -- Update planet data
 UPDATE planets SET forSale = :fsInput, planetName = :pnInput WHERE planetID =:planetidInput;
 
+-- Select information
+SELECT * FROM information;
+
 -- Insert data to information
 INSERT INTO information(distance, size, material, explored, lifeDiscovered)
 VALUES (distance=:distanceInput, size=:sizeInput, material=:materialInput,
                     explored=:exploredInput, lifeDiscovered = ldInput);
 
--- Select information
-SELECT * FROM information;
 
 -- Delete data from information
 DELETE FROM information WHERE infoID = :infoidInput;
