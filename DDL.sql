@@ -57,7 +57,7 @@ CREATE TABLE `information`(
 
 CREATE TABLE `funFacts`(
     `ffID` INT AUTO_INCREMENT UNIQUE NOT NULL,
-    `funFact` varchar(255) NOT NULL,
+    `funFact` varchar(255),
     PRIMARY KEY(ffID)
 );
 
