@@ -6,13 +6,13 @@
 {{!-- The Data from our Database --}}
 
 {{!-- Create a table --}}
-<table>
+<table id="clients-table">
 
     {{!-- Header section --}}
     <thead>
 
         {{!-- For just the first row, we print each key of the row object as a header cell so we
-        know what each column means when the page renders --}}
+        know what each column means when the pphone renders --}}
         <tr>
             {{#each data.[0]}}
             <th>
@@ -25,7 +25,7 @@
     {{!-- Body section --}}
     <tbody>
 
-        {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
+        {{!-- For each row, print the id, firstName, lastName, email and phone, in order --}}
         {{#each data}}
         <tr>
             <td>{{this.clientID}}</td>
@@ -37,3 +37,27 @@
         {{/each}}
     </tbody>
 </table>
+
+
+
+{{!-- Form to add a record to the table using standard HTML forms --}}
+<h2>Adding Data using an HTML form</h2>
+<p>To add a new person, please enter their information below and click `Submit`!</p>
+
+
+<form id="add-client-form" method="POST" action="/add-client-form">
+
+    <label for="input-firstName">First Name: </label>
+    <input type="text" name="input-firstName" id="input-firstName">
+    
+    <label for="input-lastName">Last Name: </label>
+    <input type="text" name="input-lastName" id="input-lastName">
+
+    <label for="input-phone">Phone: </label>
+    <input type="text" name="input-phone" id="input-phone">
+
+    <label for="input-email">Email: </label>
+    <input type="text" name="input-email" id="input-email">
+
+    <input type="submit">
+</form> 
