@@ -1,22 +1,36 @@
-var path = require('path');
+// express
 var express = require('express');
-var exphbs = require('express-handlebars');
-var db = require('./space-db.json');
-
 var app = express();
 var PORT = process.env.PORT || 8320;
 
+// database
+var db = require('./database/db-connecter');
+
+// handlebars
+var exphbs = require('express-handlebars');
+const { query } = require('express');
 app.engine('handlebars', exphbs.engine({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
 
+var path = require('path');
+//var db = require('./space-db.json');
+
+
+
+
 app.get('/', function (req, res, next) {
 	console.log("HOME");
-	var homeData = db[0];
-	res.status(200).render('homePage', { // homePage is homePage.js auto-generated js
-		overview: homeData.overview
+
+	let query1 = "SELECT * FROM clients;";
+	db.pool.query(query1, function(error, rows, fields){
+		res.render('index', {data: rows});
 	})
 });
 
+
+
+
+/*
 app.use(express.static('public')); // ????????
 
 app.get('/clients', function(req, res, next) {
@@ -90,6 +104,9 @@ app.get('*', function (req, res) {
 		path: req.url
 	})
 });
+
+*/
+
 
 app.listen(PORT, function () {
 	console.log("== Server is listening on PORT", PORT);
