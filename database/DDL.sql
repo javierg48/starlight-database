@@ -19,11 +19,11 @@ CREATE TABLE `clients`(
 
 
 CREATE TABLE `sales`(
-    `salesID` int UNIQUE AUTO_INCREMENT NOT NULL,
+    `saleID` int UNIQUE NOT NULL AUTO_INCREMENT,
     `date` DATETIME NOT NULL,
     `price` DECIMAL(19,2),
     `cid` int,
-    PRIMARY KEY(salesID),
+    PRIMARY KEY(saleID),
 	FOREIGN KEY(cid) REFERENCES  clients (clientID) ON DELETE CASCADE
 );
 
@@ -33,7 +33,7 @@ CREATE TABLE `planets`(
     `planetName` varchar(255) NOT NULL,
     `sid` int,
 	PRIMARY KEY(planetID),
-    FOREIGN KEY(sid) REFERENCES sales (salesID) ON DELETE CASCADE
+    FOREIGN KEY(sid) REFERENCES sales (saleID) ON DELETE CASCADE
 );
 
 
@@ -70,10 +70,10 @@ VALUES
 	('01-01-2020', 1002.30, 3)
 ;
 
-INSERT INTO `planets`(planetName, forSale)
-VALUES ('Saturn', TRUE),
-    ('Mercury', TRUE),
-    ('Venus', TRUE);
+INSERT INTO `planets`(planetName, forSale, sid)
+VALUES ('Saturn', TRUE, 1),
+    ('Mercury', TRUE, 2),
+    ('Venus', TRUE, 3);
     
 INSERT INTO `information`(distance, size, material, explored, lifeDiscovered, pid, fid)
 VALUES

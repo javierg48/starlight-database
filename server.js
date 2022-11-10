@@ -37,58 +37,45 @@ app.get('/clients', function(req, res, next) {
 	})
 });
 
-/*
 app.get('/sales', function(req, res, next) {
 	console.log("SALES");
-	var salesData = db[2];
 
-	if (salesData) {
-		res.status(200).render('salesPage', {
-			sales: salesData.sales
-    })
-  } else {
-    next();
-  }
+	let query1 = "SELECT * FROM sales;";
+	db.pool.query(query1, function(error, rows, fields){
+		res.render('sales', {data: rows});
+	})
 });
+
 
 app.get('/planets', function(req, res, next) {
 	console.log("PLANETS");
-	var planetsData = db[3];
 
-	if (planetsData) {
-		res.status(200).render('planetsPage', {
-			planets: planetsData.planets
-    })
-  } else {
-    next();
-  }
+	let query1 = "SELECT * FROM planets;";
+	db.pool.query(query1, function(error, rows, fields){
+		res.render('planets', {data: rows});
+	})
 });
+
 
 app.get('/information', function(req, res, next) {
 	console.log("INFORMATION");
-	var informationData = db[4];
 
-	if (informationData) {
-		res.status(200).render('informationPage', {
-			information: informationData.information
-    })
-  } else {
-    next();
-  }
+	let query1 = "SELECT * FROM information;";
+	db.pool.query(query1, function(error, rows, fields){
+		res.render('information', {data: rows});
+	})
 });
 
-app.get('/funfacts', function(req, res, next) {
+
+app.get('/funFacts', function(req, res, next) {
 	console.log("FUN FACTS");
-	var funFactsData = db[5];
 
-	if (funFactsData) {
-		res.status(200).render('funFactsPage', {
-			funFacts: funFactsData.funFacts
-    })
-  } else {
-    next();
-  }
+	let query1 = "SELECT * FROM funFacts;";
+	db.pool.query(query1, function(error, rows, fields){
+		res.render('funFacts', {data: rows});
+	})
 });
+
 
 app.get('*', function (req, res) {
 	console.log("ERROR");
@@ -97,7 +84,6 @@ app.get('*', function (req, res) {
 	})
 });
 
-*/
 
 
 app.listen(PORT, function () {
