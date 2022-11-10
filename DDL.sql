@@ -11,7 +11,7 @@ CREATE TABLE `clients`(
     `clientID` int UNIQUE NOT NULL AUTO_INCREMENT,
     `firstName` varchar(255) NOT NULL,
     `lastName` varchar(255) NOT NULL,
-    `phone` INT(10) UNIQUE NOT NULL,
+    `phone` varchar(10) UNIQUE NOT NULL,
     `email` varchar(255) NOT NULL,
     PRIMARY KEY(`clientID`)
 );
@@ -23,9 +23,8 @@ CREATE TABLE `sales`(
     `date` DATETIME NOT NULL,
     `price` DECIMAL(19,2),
     `cid` int,
-    FOREIGN KEY(cid) REFERENCES  clients (clientID),
-    PRIMARY KEY(salesID)
-    ON DELETE CASCADE
+    PRIMARY KEY(salesID),
+	FOREIGN KEY(cid) REFERENCES  clients (clientID) ON DELETE CASCADE
 );
 
 CREATE TABLE `planets`(
@@ -33,9 +32,8 @@ CREATE TABLE `planets`(
     `forSale` BOOLEAN NOT NULL DEFAULT 0,
     `planetName` varchar(255) NOT NULL,
     `sid` int,
-    FOREIGN KEY(sid) REFERENCES sales (salesID),
-    PRIMARY KEY(planetID)
-    ON DELETE CASCADE
+	PRIMARY KEY(planetID),
+    FOREIGN KEY(sid) REFERENCES sales (salesID) ON DELETE CASCADE
 );
 
 
@@ -49,9 +47,8 @@ CREATE TABLE `information`(
     `pid` INT,
     `fid` INT,
     PRIMARY KEY(infoID),
-    FOREIGN KEY(pid) REFERENCES planets (planetID),
-    FOREIGN KEY(fid) REFERENCES funFacts (ffID)
-    ON DELETE CASCADE
+    FOREIGN KEY(pid) REFERENCES planets (planetID) ON DELETE CASCADE,
+    FOREIGN KEY(fid) REFERENCES funFacts (ffID) ON DELETE CASCADE
 );
 
 
@@ -62,54 +59,34 @@ CREATE TABLE `funFacts`(
 );
 
 INSERT INTO `clients` (firstName, lastName, phone, email)
-VALUES('Motola', 'Anibaba', 2815555555, 'motola@hello.com'),
-        ('Javier', 'Garcia', 1234567890, 'javier@hello.com'),
-        ('Burna', 'Boy', 9999999999, 'burnaboy@goodbye.com');
+VALUES('Motola', 'Anibaba', '2815555555', 'motola@hello.com'),
+        ('Javier', 'Garcia', '1234567890', 'javier@hello.com'),
+        ('Burna', 'Boy', '9999999999', 'burnaboy@goodbye.com');
         
-INSERT INTO `sales`(date, price)
-VALUES(
-
-	(SELECT planetID FROM planets WHERE planetName = 'Saturn'),
-    '12-01-2019', 2322.50,
-    
-    (SELECT planetID FROM planets WHERE planetName = 'Mercury'),
-    '06-12-2012', 3400.75,
-
-	(SELECT planetID FROM planets WHERE planetName = 'Venus'),
-    '01-01-2020', 1002.30
-);
+INSERT INTO `sales`(date, price, cid)
+VALUES 
+	('12-01-2019', 2322.50, 1),
+    ('06-12-2012', 3400.75, 2),
+	('01-01-2020', 1002.30, 3)
+;
 
 INSERT INTO `planets`(planetName, forSale)
 VALUES ('Saturn', TRUE),
     ('Mercury', TRUE),
     ('Venus', TRUE);
     
-INSERT INTO `information`(distance, size, material, explored, lifeDiscovered)
-VALUES(
-
-	(SELECT planetID FROM planets WHERE planetName = 'Saturn'),
-	(878, 72367, 'Hydrogen and Helium', TRUE, TRUE),
-    
-    (SELECT planetID FROM planets WHERE planetName = 'Mercury'),
-    (117, 3032, 'Mercury is made up mostly of iron.', FALSE, FALSE),
-    
-    (SELECT planetID FROM planets WHERE planetName = 'Venus'),
-    (160, 7521, 'Central iron core and rocky mantle. Atmosphere is 96 percent CO2 and 3 percent Nitrogen', TRUE, FALSE)
-    
-);
+INSERT INTO `information`(distance, size, material, explored, lifeDiscovered, pid, fid)
+VALUES
+	(878, 72367, 'Hydrogen and Helium', TRUE, TRUE, 1, 1),
+    (117, 3032, 'Mercury is made up mostly of iron.', FALSE, FALSE, 2, 2),
+    (160, 7521, 'Central iron core and rocky mantle. Atmosphere is 96 percent CO2 and 3 percent Nitrogen', TRUE, FALSE, 3, 3);
 
 INSERT INTO `funFacts`(funFact)
-VALUES(
-	(SELECT planetID FROM planets WHERE planetName = 'Saturn'),
+VALUES
     ('Saturn could float in water because it is mostly made up of gas.'),
-    
-    (SELECT planetID FROM planets WHERE planetName = 'Mercury'),
     ('Mercury is the smallest planet in the Solar System.'),
-    
-    (SELECT planetID FROM planets WHERE planetName = 'Venus'),
-    ('Venus is the hottest planet in the Solar System.')
-    
-);
+    ('Venus is the hottest planet in the Solar System.');
+
     
 
 SET FOREIGN_KEY_CHECKS=1;
