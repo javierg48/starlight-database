@@ -20,32 +20,24 @@ var path = require('path');
 
 app.get('/', function (req, res, next) {
 	console.log("HOME");
-
-	let query1 = "SELECT * FROM clients;";
-	db.pool.query(query1, function(error, rows, fields){
-		res.render('index', {data: rows});
-	})
+	res.status(200).render('index', { overview: "For the first time ever, entire planets are exclusively for sale and Starlight \nsells official claims to planets. A database driven website will record information about \nclients, their planets, general information on the planets, and planet fun facts. Only a \nfew extremely wealthy individuals can afford to purchase entire planets, so Starlight \nanticipates its sales volume to be low and has a database with a maximum capacity of 1,000 \nplanets. The database will have the capability to support multiple planets per owner. \nTherefore, the client count should be less than the amount of planets owned. Planets can \nhave many fun facts. Since the fun facts can be unique or basic, it is possible for a \nparticular fun fact to be true for many planets. Starlight would like to store basic \ninformation on all of the planets that are sold and the clients who purchased them. Clients \ncan purchase planets at the Starlight HQ where both customer and planet information will be \nentered manually into the database once purchased."})
 });
 
 
 
 
-/*
 app.use(express.static('public')); // ????????
 
 app.get('/clients', function(req, res, next) {
 	console.log("CLIENTS");
-	var clientsData = db[1];
 
-	if (clientsData) {
-		res.status(200).render('clientsPage', {
-			clients: clientsData.clients
-    })
-  } else {
-    next();
-  }
+	let query1 = "SELECT * FROM clients;";
+	db.pool.query(query1, function(error, rows, fields){
+		res.render('clients', {data: rows});
+	})
 });
 
+/*
 app.get('/sales', function(req, res, next) {
 	console.log("SALES");
 	var salesData = db[2];
