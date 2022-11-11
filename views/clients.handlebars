@@ -61,3 +61,63 @@
 
     <input type="submit">
 </form> 
+
+<h2>Updating A Client's Planet Form</h2>
+<p>To update a specific user's homeworld select their name from the drop-down menu on the left and their desired homeworld from the drop down menu on the right</p>
+<form id="update-client-form">
+
+    <label for="input-clientName">Client full name: </label>
+    <select name="input-clientName" id="pClient">
+        <option value="test">Choose a Client</option>
+        {{#each data}}
+        <option value="{{this.id}}">{{this.firstName}} {{this.lastName}}</option>
+        {{/each}}
+    </select>
+
+    <label for="input-planet">Planet: </label>
+    <select name="input-planet" id="input-planet">
+        <option>Select a Planet</option>
+        {{#each planets}}
+        <option value="{{this.id}}">{{this.name}}</option>
+        {{/each}}
+    </select>
+    <input type="submit">
+
+</form>
+
+<script src="./js/update_planet.js"></script>
+
+<table id="client-table">>
+
+    {{!-- Header section --}}
+    <thead>
+
+        {{!-- For just the first row, we print each key of the row object as a header cell so we
+        know what each column means when the page renders --}}
+        <tr>
+            {{#each data.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}
+            <th>delete</th>
+        </tr>
+    </thead>
+
+    {{!-- Body section --}}
+    <tbody>
+
+        {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
+        {{#each data}}
+        <tr data-value={{this.id}}>>
+            <td>{{this.id}}</td>
+            <td>{{this.firstName}}</td>
+            <td>{{this.lastName}}</td>
+            <td>{{this.phone}}</td>
+            <td>{{this.email}}</td>
+            <td><button onclick="deleteClient({{this.id}})">Delete</button></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+<script src="./js/delete_client.js"></script>
