@@ -98,7 +98,7 @@ app.post('/add-client-form', function(req, res){
             res.sendStatus(400);
         }
 
-        // If there was no error, we redirect back to our root route, which automatically runs the SELECT * FROM bsg_people and
+        // If there was no error, we redirect back to our root route, which automatically runs the SELECT * FROM clients and
         // presents it on the screen
         else
         {
@@ -114,6 +114,76 @@ app.get('*', function (req, res) {
 		path: req.url
 	})
 });
+
+app.delete('/delete-client', function(req,res,next){                                                                
+	let data = req.body;
+	let planetID = parseInt(data.id);
+	let deletePlanets = `DELETE FROM planets WHERE planetID =:planetidInput`;
+	let deleteClient= `DELETE FROM client WHERE id = :idInput`;
+  
+  
+		  // Run the 1st query
+		  db.pool.query(deletePlanets, [planetID], function(error, rows, fields){
+			  if (error) {
+  
+			  // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+			  console.log(error);
+			  res.sendStatus(400);
+			  }
+  
+			  else
+			  {
+				  // Run the second query
+				  db.pool.query(deleteClient, [planetID], function(error, rows, fields) {
+		  
+					  if (error) {
+						  console.log(error);
+						  res.sendStatus(400);
+					  } else {
+						  res.sendStatus(204);
+					  }
+				  })
+			  }
+  })});
+
+  app.put('/update-client', function(req,res,next){                                   
+	let data = req.body;
+  
+	let planets = parseInt(data.planets);
+	let client = parseInt(data.clientname);
+  
+	queryUpdateClient = `UPDATE client SET firstName = :firstNameInput,
+				lastName = :lastNameInput,
+				phone = :phoneInput,
+				email = :emailInput
+				WHERE id = :idInput;`;
+	selectPlanets = `SELECT * FROM planets WHERE planetName LIKE planetInput`
+  
+		  // Run the 1st query
+		  db.pool.query(queryUpdateClient, [planets, client], function(error, rows, fields){
+			  if (error) {
+  
+			  // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+			  console.log(error);
+			  res.sendStatus(400);
+			  }
+  
+			  // If there was no error, we run our second query and return that data so we can use it to update the people's
+			  // table on the front-end
+			  else
+			  {
+				  // Run the second query
+				  db.pool.query(selectPlanets, [planets], function(error, rows, fields) {
+		  
+					  if (error) {
+						  console.log(error);
+						  res.sendStatus(400);
+					  } else {
+						  res.send(rows);
+					  }
+				  })
+			  }
+  })}); 
 
 /*
     LISTENER
