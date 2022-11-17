@@ -7,43 +7,36 @@
 
 {{!-- Create a table --}}
 <table id="clients-table">
-
-    {{!-- Header section --}}
     <thead>
-
-        {{!-- For just the first row, we print each key of the row object as a header cell so we
-        know what each column means when the pphone renders --}}
         <tr>
             {{#each data.[0]}}
             <th>
                 {{@key}}
             </th>
             {{/each}}
+            <th>Delete</th>
         </tr>
     </thead>
-
-    {{!-- Body section --}}
     <tbody>
-
-        {{!-- For each row, print the id, firstName, lastName, email and phone, in order --}}
         {{#each data}}
-        <tr>
+        <tr data-value={{this.clientID}}>
             <td>{{this.clientID}}</td>
             <td>{{this.firstName}}</td>
             <td>{{this.lastName}}</td>
             <td>{{this.phone}}</td>
             <td>{{this.email}}</td>
+            <td>
+                <button onclick="deleteClient({{this.clientID}})">Delete</button>
+            </td>
         </tr>
         {{/each}}
     </tbody>
 </table>
+<script src="./js/delete_client.js"></script>
 
 
-
-{{!-- Form to add a record to the table using standard HTML forms --}}
 <h2>Adding Data using an HTML form</h2>
 <p>To add a new person, please enter their information below and click `Submit`!</p>
-
 
 <form id="add-client-form" method="POST" action="/add-client-form">
 
@@ -84,40 +77,4 @@
     <input type="submit">
 
 </form>
-
-<script src="./js/update_planet.js"></script>
-
-<table id="client-table">>
-
-    {{!-- Header section --}}
-    <thead>
-
-        {{!-- For just the first row, we print each key of the row object as a header cell so we
-        know what each column means when the page renders --}}
-        <tr>
-            {{#each data.[0]}}
-            <th>
-                {{@key}}
-            </th>
-            {{/each}}
-            <th>delete</th>
-        </tr>
-    </thead>
-
-    {{!-- Body section --}}
-    <tbody>
-
-        {{!-- For each row, print the id, firstName, lastName, phone and email, in order --}}
-        {{#each data}}
-        <tr data-value={{this.id}}>>
-            <td>{{this.id}}</td>
-            <td>{{this.firstName}}</td>
-            <td>{{this.lastName}}</td>
-            <td>{{this.phone}}</td>
-            <td>{{this.email}}</td>
-            <td><button onclick="deleteClient({{this.id}})">Delete</button></td>
-        </tr>
-        {{/each}}
-    </tbody>
-</table>
-<script src="./js/delete_client.js"></script>
+<script src="./js/update_client.js"></script>

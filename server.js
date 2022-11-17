@@ -92,24 +92,52 @@ app.post('/add-client-form', function(req, res){
 
         // Check to see if there was an error
         if (error) {
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error)
+            res.sendStatus(400);
+        }
+        // If there was no error, we redirect back to our root route, which automatically runs the SELECT * FROM clients and
+        // presents it on the screen
+        else
+        {
+			query2= `SELECT * FROM clients`;
+			db.pool.query(query2, function(error,rows,fields){
+				if (error) {
+					console.log(error);
+					res.sendStatus(400);
+				}
+				else{
+					res.send(rows);
+				}
+			})
+        }
+    })
+})
+
+app.post('/add-sales-form', function(req, res){
+    // Capture the incoming data and parse it back to a JS object
+    let data = req.body;
+    query1 = `INSERT INTO sales (date, price) VALUES ('${data['input-date']}', '${data['input-price']}')`;
+    db.pool.query(query1, function(error, rows, fields){
+
+        // Check to see if there was an error
+        if (error) {
 
             // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
             console.log(error)
             res.sendStatus(400);
         }
-
-        // If there was no error, we redirect back to our root route, which automatically runs the SELECT * FROM clients and
-        // presents it on the screen
         else
         {
-            res.redirect('/clients');
+            res.redirect('/sales');
         }
     })
+	
 })
 
 
 app.get('*', function (req, res) {
-	console.log("ERRORR");
+	console.log("ERROR");
 	res.status(404).render('404', {
 		path: req.url
 	})
@@ -117,34 +145,19 @@ app.get('*', function (req, res) {
 
 app.delete('/delete-client', function(req,res,next){                                                                
 	let data = req.body;
-	let planetID = parseInt(data.id);
-	let deletePlanets = `DELETE FROM planets WHERE planetID =:planetidInput`;
-	let deleteClient= `DELETE FROM client WHERE id = :idInput`;
-  
-  
-		  // Run the 1st query
-		  db.pool.query(deletePlanets, [planetID], function(error, rows, fields){
+	let clientID = parseInt(data.id);
+	let deleteClient= `DELETE FROM client WHERE clientID = ?`;
+		  db.pool.query(deleteClient, [clientID], function(error, rows, fields){
 			  if (error) {
-  
-			  // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
 			  console.log(error);
 			  res.sendStatus(400);
 			  }
-  
 			  else
 			  {
-				  // Run the second query
-				  db.pool.query(deleteClient, [planetID], function(error, rows, fields) {
-		  
-					  if (error) {
-						  console.log(error);
-						  res.sendStatus(400);
-					  } else {
-						  res.sendStatus(204);
-					  }
-				  })
-			  }
-  })});
+				res.sendStatus(204);
+			}
+		})
+	});
 
   app.put('/update-client', function(req,res,next){                                   
 	let data = req.body;

@@ -1,13 +1,10 @@
 {{!-- Just some plain text --}}
 
-<h1>The server is running!</h1>
-<p>If you see this text, the server is <strong>definitely</strong> working!</p>
+<h1>Buy a Planet!</h1>
+<p>Planet Information</p>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script src="./js/delete_sale.js"></script>
+<script src="./js/add_sales.js"></script>
 
-{{!-- The Data from our Database --}}
-
-{{!-- Create a table --}}
 <table id="sales-table">
 
     {{!-- Header section --}}
@@ -30,18 +27,35 @@
 
         {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
         {{#each data}}
-			<tr data-value={{this.saleID}}>>
-				<td>{{this.saleID}}</td>
-				<td>{{this.date}}</td>
+        <tr>
+                <td>{{this.saleID}}</td>
+                <td>{{this.date}}</td>
 				<td>{{this.price}}</td>
-				<td>{{this.cid}}</td>
-				<td><button onclick="deleteSale({{this.saleID}})">Delete</button></td>
-			</tr>
+                <td>{{this.cid}}</td>
+				<td><button onclick="deleteSale({{this.date}})">Delete</button></td>
+       </tr>
         {{/each}}
-
-
-
-
-
     </tbody>
 </table>
+
+<h2>Sales</h2>
+<p>Add Sale</p>
+
+<form id="add-sales-form" method="POST" action="/add-sales-form">
+
+    <label for="input-date">Date: </label>
+    <input type="date" name="input-date" id="input-date">
+
+
+    <label for="input-price">Price: </label>
+    <input type="text" name="input-price" id="input-price">
+
+    <select name="input-cid" id="cid">
+        <option value="test">Select ClientID</option>
+        {{#each data}}
+        <option value="{{this.id}}">{{this.cid}}</option>
+        {{/each}}
+    </select>
+
+    <input type="submit">
+</form> 
