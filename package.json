@@ -25,7 +25,7 @@
   "scripts": {
     "start": "node server.js",
     "dev": "nodemon server.js",
-    "build": "handlebars views/index.handlebars -f public/index.js",
+    "build": "handlebars views/index.handlebars -f public/js/index.js",
     "prestart": "npm run build",
     "predev": "npm run build"
   }

@@ -3,19 +3,16 @@ console.log("delete sale js")
 function deleteSale(saleID) {
 	console.log("delete sale js")
 	var link = '/delete-sale/';
-	link += saleID;
 
-	/*
 	let data = {
 	  id: saleID
 	};
-	*/
   
 	$.ajax({
 	  url: link,
 	  type: 'DELETE',
-	  /*data: JSON.stringify(data),
-	  contentType: "application/json; charset=utf-8", */
+	  data: JSON.stringify(data),
+	  contentType: "application/json; charset=utf-8",
 	  success: function(result) {
 		deleteRow(saleID);
 	  }

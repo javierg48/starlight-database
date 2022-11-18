@@ -4,6 +4,7 @@
 <p>Planet Information</p>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script src="./js/add_sales.js"></script>
+<script src="./js/delete_sale.js"></script>
 
 <table id="sales-table">
 
@@ -27,13 +28,13 @@
 
         {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
         {{#each data}}
-        <tr>
+			<tr data-value={{this.saleID}}>>
                 <td>{{this.saleID}}</td>
                 <td>{{this.date}}</td>
 				<td>{{this.price}}</td>
                 <td>{{this.cid}}</td>
-				<td><button onclick="deleteSale({{this.date}})">Delete</button></td>
-       </tr>
+				<td><button onclick="deleteSale({{this.saleID}})">Delete</button></td>
+			</tr>
         {{/each}}
     </tbody>
 </table>
