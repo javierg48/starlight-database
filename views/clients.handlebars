@@ -2,6 +2,8 @@
 
 <h1>The server is running!</h1>
 <p>If you see this text, the server is <strong>definitely</strong> working!</p>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="./js/delete_client.js"></script>
 
 {{!-- The Data from our Database --}}
 
@@ -19,20 +21,19 @@
     </thead>
     <tbody>
         {{#each data}}
-        <tr data-value={{this.clientID}}>
+        <tr data-value={{this.clientID}}>>
             <td>{{this.clientID}}</td>
             <td>{{this.firstName}}</td>
             <td>{{this.lastName}}</td>
             <td>{{this.phone}}</td>
             <td>{{this.email}}</td>
             <td>
-                <button onclick="deleteClient({{this.clientID}})">Delete</button>
-            </td>
+            <td><button onclick="deleteClient({{this.clientID}})">Delete</button></td>
+        </td>
         </tr>
         {{/each}}
     </tbody>
 </table>
-<script src="./js/delete_client.js"></script>
 
 
 <h2>Adding Data using an HTML form</h2>

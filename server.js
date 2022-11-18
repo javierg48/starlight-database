@@ -156,21 +156,22 @@ app.delete('/delete-sale/', function(req,res,next){
 })});
 
 
-app.delete('/delete-client', function(req,res,next){                                                                
+app.delete('/delete-client/', function(req,res,next){                                                                
 	let data = req.body;
 	let clientID = parseInt(data.id);
-	let deleteClient= `DELETE FROM client WHERE clientID = ?`;
-		  db.pool.query(deleteClient, [clientID], function(error, rows, fields){
+	console.log(data)
+	let deleteClients = `DELETE FROM clients WHERE clientID = ?`;
+		  db.pool.query(deleteClients, [clientID], function(error, rows, fields){
 			  if (error) {
+			  // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
 			  console.log(error);
 			  res.sendStatus(400);
 			  }
+  
 			  else
-			  {
-				res.sendStatus(204);
-			}
-		})
-	});
+			  {res.sendStatus(204);
+			  }
+  })});
 
   app.put('/update-client', function(req,res,next){                                   
 	let data = req.body;
