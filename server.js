@@ -92,24 +92,17 @@ app.post('/add-client-form', function(req, res){
 
         // Check to see if there was an error
         if (error) {
+
             // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
             console.log(error)
             res.sendStatus(400);
         }
-        // If there was no error, we redirect back to our root route, which automatically runs the SELECT * FROM clients and
+
+        // If there was no error, we redirect back to our root route, which automatically runs the SELECT * FROM bsg_people and
         // presents it on the screen
         else
         {
-			query2= `SELECT * FROM clients`;
-			db.pool.query(query2, function(error,rows,fields){
-				if (error) {
-					console.log(error);
-					res.sendStatus(400);
-				}
-				else{
-					res.send(rows);
-				}
-			})
+            res.redirect('/clients');
         }
     })
 })
@@ -214,7 +207,7 @@ app.delete('/delete-client/', function(req,res,next){
 
 
 app.get('*', function (req, res) {
-	console.log("ERROR");
+	console.log("ERROR: path: ", req.url);
 	res.status(404).render('404', {
 		path: req.url
 	})
