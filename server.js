@@ -152,7 +152,6 @@ app.delete('/delete-sale/', function(req,res,next){
 app.delete('/delete-client/', function(req,res,next){                                                                
 	let data = req.body;
 	let clientID = parseInt(data.id);
-	console.log(data)
 	let deleteClients = `DELETE FROM clients WHERE clientID = ?`;
 		  db.pool.query(deleteClients, [clientID], function(error, rows, fields){
 			  if (error) {
@@ -166,44 +165,39 @@ app.delete('/delete-client/', function(req,res,next){
 			  }
   })});
 
-  app.put('/update-client', function(req,res,next){                                   
+app.put('/update-client', function(req,res,next){                                   
 	let data = req.body;
   
-	let planets = parseInt(data.planets);
-	let client = parseInt(data.clientname);
-  
-	queryUpdateClient = `UPDATE client SET firstName = :firstNameInput,
-				lastName = :lastNameInput,
-				phone = :phoneInput,
-				email = :emailInput
-				WHERE id = :idInput;`;
-	selectPlanets = `SELECT * FROM planets WHERE planetName LIKE planetInput`
-  
-		  // Run the 1st query
-		  db.pool.query(queryUpdateClient, [planets, client], function(error, rows, fields){
-			  if (error) {
-  
-			  // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
-			  console.log(error);
-			  res.sendStatus(400);
-			  }
-  
-			  // If there was no error, we run our second query and return that data so we can use it to update the people's
-			  // table on the front-end
-			  else
-			  {
-				  // Run the second query
-				  db.pool.query(selectPlanets, [planets], function(error, rows, fields) {
-		  
-					  if (error) {
-						  console.log(error);
-						  res.sendStatus(400);
-					  } else {
-						  res.send(rows);
-					  }
-				  })
-			  }
-  })}); 
+	console.log(data)
+	
+
+    let queryUpdateClient = `UPDATE clients SET firstName = '${data.firstName}', lastName = '${data.lastName}', phone = '${data.phone}', email = '${data.email}'
+	WHERE clientID = '${data.clientID}';`;
+    let selectClient = `SELECT * FROM clients WHERE clientID = '${data.clientID}';`;
+    // Run the 1st query
+    db.pool.query(queryUpdateClient, function(error, rows, fields){
+        if (error) {
+        // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+        console.log(error);
+        res.sendStatus(400);
+        }
+        // If there was no error, we run our second query and return that data so we can use it to update the people's
+        // table on the front-end
+        else
+        {
+            // Run the second query
+            db.pool.query(selectClient, function(error, rows, fields) {
+            if (error) {
+                console.log(error);
+                res.sendStatus(400);
+            } else {
+                res.send(rows);
+            }
+            })
+        }
+    })
+});
+
 
 
 app.get('*', function (req, res) {
