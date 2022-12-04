@@ -1,7 +1,6 @@
 {{!-- Just some plain text --}}
 
-<h1>The server is running!</h1>
-<p>If you see this text, the server is <strong>definitely</strong> working!</p>
+<h1>Fun Facts</h1>
 
 {{!-- The Data from our Database --}}
 
@@ -14,11 +13,8 @@
         {{!-- For just the first row, we print each key of the row object as a header cell so we
         know what each column means when the page renders --}}
         <tr>
-            {{#each data.[0]}}
-            <th>
-                {{@key}}
-            </th>
-            {{/each}}
+            <th>ID</th>
+			<th>Fun Fact</th>
         </tr>
     </thead>
 

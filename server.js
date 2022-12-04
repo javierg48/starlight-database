@@ -125,7 +125,6 @@ app.post('/add-sales-form', function(req, res){
             res.redirect('/sales');
         }
     })
-	
 })
 
 

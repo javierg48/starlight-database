@@ -1,9 +1,7 @@
 {{!-- Just some plain text --}}
 
-<h1>Buy a Planet!</h1>
-<p>Planet Information</p>
+<h1>Sales of Planets</h1>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script src="./js/add_sales.js"></script>
 <script src="./js/delete_sale.js"></script>
 
 <table id="sales-table">
@@ -14,11 +12,11 @@
         {{!-- For just the first row, we print each key of the row object as a header cell so we
         know what each column means when the page renders --}}
         <tr>
-            {{#each data.[0]}}
-            <th>
-                {{@key}}
-            </th>
-            {{/each}}
+		    <th>Sale ID</th>
+			<th>Date</th>
+			<th>Price</th>
+			<th>Client</th>
+            <th>Delete</th>	
         </tr>
     </thead>
 
@@ -51,7 +49,7 @@
     <label for="input-price">Price: </label>
     <input type="text" name="input-price" id="input-price">
 
-    <select name="input-cid" id="cid">
+    <select name="input-cid" id="input-cid">
         <option value="test">Select ClientID</option>
         {{#each data}}
         <option value="{{this.id}}">{{this.cid}}</option>
