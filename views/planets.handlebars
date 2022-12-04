@@ -36,3 +36,27 @@
         {{/each}}
     </tbody>
 </table>
+
+
+<h2>Update a Planet</h2>
+<p>Select Planet from the drop-down menu</p>
+<form id="update-planet-form">
+
+    <label for="input-planet">Planet: </label>
+    <select name="input-planet" id="mySelectPlanet">
+        <option value="test">Select a Planet</option>
+        {{#each data}}
+        <option value="{{this.planetID}}">{{this.planetName}}</option>
+        {{/each}}
+    </select>
+
+    <label for="input-forSale-u">For Sale: </label>
+    <input type="text" name="input-forSale-u" id="input-forSale-u">
+
+    <label for="input-planetName-u">Planet Name: </label>
+    <input type="text" name="input-planetName-u" id="input-planetName-u">
+
+    <input type="submit">
+</form>
+
+<script src="./js/update_planet.js"></script>

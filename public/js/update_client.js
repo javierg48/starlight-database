@@ -32,7 +32,6 @@ updateClientForm.addEventListener("submit", function (e) {
         return;
     }
 
-
     // Put our data we want to send in a javascript object
     let data = {
         clientID: clientIDValue,
