@@ -1,20 +1,35 @@
 body {
 	background-image: url('https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHx8&w=1000&q=80');
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 100%; 
-	width: 100%;
-	margin: 0 auto; 
+	color: #D4AF37;
+	font-size: 20px;
 }
 
-/* the styles for the tables */
+
+/* Styles used for links / headers */
+a:link {
+	color: #D4AF37;
+}
+  
+a:visited {
+	color: #D4AF37;
+}
+
+a:active {
+	color: white;
+}
+
+
+/* Styles used for tables */
 table {
 	float: left;
 	margin: 0 2% 5% 0;
 	border-collapse: collapse;
-	font-size: 90%;
+	font-size: 25px;
     width: 100%;
-	color: #ffffff;
+	color: #D4AF37;
+	background-color: black;
 }
+
 
 td {
 	padding: 1.5%;
@@ -24,4 +39,4 @@ td {
 }
 
 
-tr:hover {background-color: #909090;}
+tr:hover {background-color: white;}

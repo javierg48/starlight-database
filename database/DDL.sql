@@ -1,3 +1,9 @@
+-- Starlight Database
+-- Team Members: Javier Garcia, Omotola Anibaba
+-- Team Name: Qwerty
+-- Project Group: 137
+
+
 SET FOREIGN_KEY_CHECKS=0;
 SET AUTOCOMMIT = 0;
 
