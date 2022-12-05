@@ -49,7 +49,7 @@ app.get('/clients', function(req, res, next) {
 app.get('/sales', function(req, res, next) {
 	console.log("SALES");
 
-	let query1 = "SELECT * FROM sales;";
+	let query1 = "SELECT sales.saleID, sales.date, sales.price, sales.cid, clients.firstName, clients.lastName FROM sales INNER JOIN clients ON sales.cid = clients.clientID;";
 	db.pool.query(query1, function(error, rows, fields){
 		res.render('sales', {data: rows});
 	})
@@ -59,7 +59,7 @@ app.get('/sales', function(req, res, next) {
 app.get('/planets', function(req, res, next) {
 	console.log("PLANETS");
 
-	let query1 = "SELECT * FROM planets;";
+	let query1 = "SELECT planets.planetID, planets.forSale, planets.planetName, planets.sid FROM planets INNER JOIN sales ON planets.sid = sales.saleID;";
 	db.pool.query(query1, function(error, rows, fields){
 		res.render('planets', {data: rows});
 	})
@@ -121,6 +121,7 @@ app.post('/add-client-form', function(req, res){
 app.post('/add-sales-form', function(req, res){
     // Capture the incoming data and parse it back to a JS object
     let data = req.body;
+	console.log(data)
     query1 = `INSERT INTO sales (date, price) VALUES ('${data['input-date']}', '${data['input-price']}')`;
     db.pool.query(query1, function(error, rows, fields){
         // Check to see if there was an error

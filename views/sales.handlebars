@@ -37,7 +37,7 @@ source https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main/Step%20
                 <td>{{this.saleID}}</td>
                 <td>{{this.date}}</td>
 				<td>{{this.price}}</td>
-                <td>{{this.cid}}</td>
+                <td>{{this.firstName}} {{this.lastName}}</td>
 				<td><button onclick="deleteSale({{this.saleID}})">Delete</button></td>
 			</tr>
         {{/each}}
@@ -59,7 +59,7 @@ source https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main/Step%20
     <select name="input-cid" id="input-cid">
         <option value="test">Select ClientID</option>
         {{#each data}}
-        <option value="{{this.id}}">{{this.cid}}</option>
+        <option value="{{this.id}}">{{this.firstName}} {{this.lastName}}</option>
         {{/each}}
     </select>
 

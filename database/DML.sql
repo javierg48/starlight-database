@@ -2,8 +2,8 @@
 SET FOREIGN_KEY_CHECKS=0;
 SET AUTOCOMMIT=0;
 
-SELECT * FROM client;
-INSERT INTO client(firstName, lastName, phone, email)
+SELECT * FROM clients;
+INSERT INTO clients(firstName, lastName, phone, email)
 VALUES (
     :firstNameInput, 
     :lastNameInput, 
@@ -11,17 +11,17 @@ VALUES (
     :emailInput
 );
 
--- Lookup client by phone number
-SELECT * FROM client WHERE phone = :phoneInput;
+-- Lookup clients by phone number
+SELECT * FROM clients WHERE phone = :phoneInput;
 
--- Delete client
-DELETE FROM client WHERE id = :idInput;
+-- Delete clients
+DELETE FROM clients WHERE id = :idInput;
 
--- Delete client through `sales`
+-- Delete clients through `sales`
 DELETE FROM sales WHERE cid = :idInput;
 
--- Update client information
-UPDATE client SET firstName = :firstNameInput,
+-- Update clients information
+UPDATE clients SET firstName = :firstNameInput,
                 lastName = :lastNameInput,
                 phone = :phoneInput,
                 email = :emailInput
@@ -30,9 +30,10 @@ UPDATE client SET firstName = :firstNameInput,
 
 -- SALES
 -- Query for select a sale functionality
-SELECT sales.saleID, clients.firstName, clients.lastName
+SELECT sales.saleID, clients.firstName, clients.lastName 
 FROM sales
 INNER JOIN clients ON sales.cid = clients.clientID;
+
 
 
 -- Add to `sales` table

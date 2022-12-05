@@ -71,9 +71,9 @@ VALUES('Motola', 'Anibaba', '2815555555', 'motola@hello.com'),
         
 INSERT INTO `sales`(date, price, cid)
 VALUES 
-	('12-01-2019', 2322.50, (SELECT clientID FROM clients WHERE firstName = "Motola" AND lastName = "Anibaba")),
-    ('06-12-2012', 3400.75, (SELECT clientID FROM clients WHERE firstName = "Javier" AND lastName = "Garcia")),
-	('01-01-2020', 1002.30, (SELECT clientID FROM clients WHERE firstName = "Burna" AND lastName = "Boy"))
+	('2019-12-01', 2322.50, (SELECT clientID FROM clients WHERE firstName = "Motola" AND lastName = "Anibaba")),
+    ('2012-06-12', 3400.75, (SELECT clientID FROM clients WHERE firstName = "Javier" AND lastName = "Garcia")),
+	('2020-01-01', 1002.30, (SELECT clientID FROM clients WHERE firstName = "Burna" AND lastName = "Boy"))
 ;
 
 INSERT INTO `planets`(planetName, forSale, sid)
