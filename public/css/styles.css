@@ -1,3 +1,10 @@
+/*****************************************************
+* citation scope: Folks Talk
+* date: 12/04/2022
+* originality: based
+* source: https://www.folkstalk.com/tech/html-table-cell-full-width-with-code-examples/
+******************************************************/
+
 body {
 	background-image: url('https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHx8&w=1000&q=80');
 	color: #D4AF37;
@@ -5,7 +12,7 @@ body {
 }
 
 
-/* Styles used for links / headers */
+/* Styles used for tables */
 a:link {
 	color: #D4AF37;
 }
@@ -21,21 +28,21 @@ a:active {
 
 /* Styles used for tables */
 table {
-	float: left;
+    width: 100%;
 	margin: 0 2% 5% 0;
 	border-collapse: collapse;
-	font-size: 25px;
-    width: 100%;
-	color: #D4AF37;
 	background-color: black;
+	font-size: 25px;
+	color: #D4AF37;
+	float: left;
 }
 
 
 td {
-	padding: 1.5%;
-	border: 3px solid;
 	border-color: #ffffff;
+	border: 3px solid;
     text-align: center;
+	padding: 1.5%;
 }
 
 

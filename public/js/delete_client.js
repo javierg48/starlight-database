@@ -1,3 +1,10 @@
+/*****************************************************
+* citation scope: Node Starter App Step 8
+* date: 12/04/2022
+* originality: based
+* source https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main/Step%208%20-%20Dynamically%20Updating%20Data/views
+******************************************************/
+
 // code for deleteSale function using jQuery
 function deleteClient(clientID) {
 	var link = '/delete-client/';
