@@ -22,6 +22,8 @@ function deleteRow(clientID){
 	let table = document.getElementById("clients-table");
 	for (let i = 0, row; row = table.rows[i]; i++) {
 		if (table.rows[i].getAttribute("data-value") == clientID) {
+			//iterate through rows
+       		//rows would be accessed using the "row" variable assigned in the for loop
 			table.deleteRow(i);
 			break;
 		}

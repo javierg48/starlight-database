@@ -17,8 +17,7 @@ updatePlanetForm.addEventListener("submit", function (e) {
     let forSaleValue = inputForSale.value;
     let planetNameValue = inputPlanetName.value;
 
-    // currently the database table for bsg_people does not allow updating values to NULL
-    // so we must abort if being passed NULL for homeworld
+    // must abort if being passed NULL for forsale or planetName
 
     if (!forSaleValue || !planetNameValue) 
     {
@@ -71,7 +70,7 @@ function updateRow(data, planetID){
        //rows would be accessed using the "row" variable assigned in the for loop
        if (table.rows[i].getAttribute("data-value") == planetID) {
 
-            // Get the location of the row where we found the matching person ID
+            // Get the location of the row where we found the matching planetID
             let updateRowIndex = table.getElementsByTagName("tr")[i];
 
             // Get td of all values

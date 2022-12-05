@@ -1,4 +1,7 @@
 -- Add new client
+SET FOREIGN_KEY_CHECKS=0;
+SET AUTOCOMMIT=0;
+
 SELECT * FROM client;
 INSERT INTO client(firstName, lastName, phone, email)
 VALUES (
@@ -23,6 +26,14 @@ UPDATE client SET firstName = :firstNameInput,
                 phone = :phoneInput,
                 email = :emailInput
             WHERE id = :idInput;
+
+
+-- SALES
+-- Query for select a sale functionality
+SELECT sales.saleID, clients.firstName, clients.lastName
+FROM sales
+INNER JOIN clients ON sales.cid = clients.clientID;
+
 
 -- Add to `sales` table
 INSERT INTO sales (date, price, cid) 

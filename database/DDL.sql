@@ -24,7 +24,7 @@ CREATE TABLE `sales`(
     `price` DECIMAL(19,2),
     `cid` int,
     PRIMARY KEY(saleID),
-	FOREIGN KEY(cid) REFERENCES  clients (clientID) ON DELETE CASCADE
+	FOREIGN KEY(cid) REFERENCES  clients (clientID) ON DELETE SET NULL
 );
 
 CREATE TABLE `planets`(
@@ -65,9 +65,9 @@ VALUES('Motola', 'Anibaba', '2815555555', 'motola@hello.com'),
         
 INSERT INTO `sales`(date, price, cid)
 VALUES 
-	('12-01-2019', 2322.50, 1),
-    ('06-12-2012', 3400.75, 2),
-	('01-01-2020', 1002.30, 3)
+	('12-01-2019', 2322.50, (SELECT clientID FROM clients WHERE firstName = "Motola" AND lastName = "Anibaba")),
+    ('06-12-2012', 3400.75, (SELECT clientID FROM clients WHERE firstName = "Javier" AND lastName = "Garcia")),
+	('01-01-2020', 1002.30, (SELECT clientID FROM clients WHERE firstName = "Burna" AND lastName = "Boy"))
 ;
 
 INSERT INTO `planets`(planetName, forSale, sid)

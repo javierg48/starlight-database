@@ -22,9 +22,7 @@ updateClientForm.addEventListener("submit", function (e) {
     let clientPhoneValue = inputClientPhone.value;
     let clientEmailValue = inputClientEmail.value;
 
-    // currently the database table for bsg_people does not allow updating values to NULL
-    // so we must abort if being passed NULL for homeworld
-
+    // we must abort if being passed NULL for firstName or lastName
     if (!clientFirstNameValue || !clientLastNameValue) 
     {
         inputClientFirstName.value = '';
@@ -80,7 +78,7 @@ function updateRow(data, clientID){
        //rows would be accessed using the "row" variable assigned in the for loop
        if (table.rows[i].getAttribute("data-value") == clientID) {
 
-            // Get the location of the row where we found the matching person ID
+            // Get the location of the row where we found the matching clientID
             let updateRowIndex = table.getElementsByTagName("tr")[i];
 
             // Get td of all values
