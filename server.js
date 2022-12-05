@@ -15,20 +15,19 @@ app.engine('handlebars', exphbs.engine({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
 
 var path = require('path');
-//var db = require('./space-db.json');
 
+// Static Files
+app.use(express.static('public'));
 
-/*
-    ROUTES
-*/
+/***************************************************************
+*                     GET ROUTES                               *
+***************************************************************/
 
-// GET ROUTES
 app.get('/', function (req, res, next) {
 	console.log("HOME");
 	res.status(200).render('index', { overview: "For the first time ever, entire planets are exclusively for sale and Starlight \nsells official claims to planets. A database driven website will record information about \nclients, their planets, general information on the planets, and planet fun facts. Only a \nfew extremely wealthy individuals can afford to purchase entire planets, so Starlight \nanticipates its sales volume to be low and has a database with a maximum capacity of 1,000 \nplanets. The database will have the capability to support multiple planets per owner. \nTherefore, the client count should be less than the amount of planets owned. Planets can \nhave many fun facts. Since the fun facts can be unique or basic, it is possible for a \nparticular fun fact to be true for many planets. Starlight would like to store basic \ninformation on all of the planets that are sold and the clients who purchased them. Clients \ncan purchase planets at the Starlight HQ where both customer and planet information will be \nentered manually into the database once purchased."})
 });
 
-app.use(express.static('public')); // hard coded html files
 
 app.get('/clients', function(req, res, next) {
 	console.log("CLIENTS");
@@ -38,6 +37,7 @@ app.get('/clients', function(req, res, next) {
 		res.render('clients', {data: rows});
 	})
 });
+
 
 app.get('/sales', function(req, res, next) {
 	console.log("SALES");
@@ -79,7 +79,10 @@ app.get('/funFacts', function(req, res, next) {
 });
 
 
-// POST ROUTES 
+/***************************************************************
+*                     POST ROUTES                              *
+***************************************************************/
+
 app.post('/add-client-form', function(req, res){
     // Capture the incoming data and parse it back to a JS object
     let data = req.body;
@@ -98,7 +101,7 @@ app.post('/add-client-form', function(req, res){
             res.sendStatus(400);
         }
 
-        // If there was no error, we redirect back to our root route, which automatically runs the SELECT * FROM bsg_people and
+        // If there was no error, we redirect back to our root route, which automatically runs the SELECT * FROM clients and
         // presents it on the screen
         else
         {
@@ -107,19 +110,20 @@ app.post('/add-client-form', function(req, res){
     })
 })
 
+
 app.post('/add-sales-form', function(req, res){
     // Capture the incoming data and parse it back to a JS object
     let data = req.body;
     query1 = `INSERT INTO sales (date, price) VALUES ('${data['input-date']}', '${data['input-price']}')`;
     db.pool.query(query1, function(error, rows, fields){
-
         // Check to see if there was an error
         if (error) {
-
             // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
             console.log(error)
             res.sendStatus(400);
         }
+		// If there was no error, we redirect back to our root route, which automatically runs the SELECT * FROM sales and
+        // presents it on the screen
         else
         {
             res.redirect('/sales');
@@ -127,26 +131,9 @@ app.post('/add-sales-form', function(req, res){
     })
 })
 
-
-
-
-
-app.delete('/delete-sale/', function(req,res,next){                                                                
-  let data = req.body;
-  let saleID = parseInt(data.id);
-  let deleteSales = `DELETE FROM sales WHERE saleID = ?`;
-        db.pool.query(deleteSales, [saleID], function(error, rows, fields){
-            if (error) {
-            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
-            console.log(error);
-            res.sendStatus(400);
-            }
-
-            else
-            {res.sendStatus(204);
-            }
-})});
-
+/***************************************************************
+*                     DELETE ROUTES                            *
+***************************************************************/
 
 app.delete('/delete-client/', function(req,res,next){                                                                
 	let data = req.body;
@@ -162,7 +149,30 @@ app.delete('/delete-client/', function(req,res,next){
 			  else
 			  {res.sendStatus(204);
 			  }
-  })});
+})});
+
+
+app.delete('/delete-sale/', function(req,res,next){                                                                
+  let data = req.body;
+  let saleID = parseInt(data.id);
+  let deleteSales = `DELETE FROM sales WHERE saleID = ?`;
+        db.pool.query(deleteSales, [saleID], function(error, rows, fields){
+            if (error) {
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error);
+            res.sendStatus(400);
+            }
+			// If there was no error, we redirect back to our root route, which automatically runs the SELECT * FROM clients and
+			// presents it on the screen
+            else
+            {res.sendStatus(204);
+            }
+})});
+
+
+/***************************************************************
+*                     UPDATE ROUTES                            *
+***************************************************************/
 
 app.put('/update-client', function(req,res,next){                                   
 	let data = req.body;
@@ -225,16 +235,20 @@ app.put('/update-planet', function(req,res,next){
 });
 
 
+/***************************************************************
+*                          404 PAGE                            *
+***************************************************************/
 app.get('*', function (req, res) {
 	console.log("ERROR: path: ", req.url);
 	res.status(404).render('404', {
 		path: req.url
 	})
 });
-/*
-    LISTENER
-*/
 
+
+/***************************************************************
+*                          LISTENER                            *
+***************************************************************/
 app.listen(PORT, function () {
 	console.log("== Server is listening on PORT", PORT);
 });
